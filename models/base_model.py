@@ -8,7 +8,7 @@ from models import storage
 
 
 class BaseModel():
-    """ Defines all common attributes and methods for other classes that inherits from the class """
+    """Defines all common attributes and methods for other classes that """
     def __init__(self, *args, **kwargs):
         """ initialization of class instance attributes """
         if kwargs:
@@ -25,26 +25,20 @@ class BaseModel():
             self.updated_at = datetime.today()
             storage.new(self)
 
-    
-
-    
-
     def to_dict(self):
-        """ Generate a new dict with an extra field __class__ """
+        """Generate a new dict with an extra field __class__"""
         new_dict = self.__dict__.copy()
         new_dict["__class__"] = self.__class__.__name__
         new_dict["created_at"] = self.created_at.isoformat()
         new_dict["updated_at"] = self.updated_at.isoformat()
         return new_dict
 
-
     def save(self):
         """ Updates update_at """
         self.updated_at = datetime.today()
         storage.save()
 
-    
     def __str__(self):
-        """ Prints object in friendly format starting with class name followed by id and otehr attributes"""
+        """Prints object in friendly format starting with class name"""
         return "[{}] ({}) {}".format(self.__class__.__name__,
                                      self.id, self.__dict__)

@@ -56,4 +56,3 @@ class HBNBCommand(cmd.Cmd):
             return
         my_data = shlex.split(arg)
         if my_data[0] not in HBNBCommand.my_dict.keys():
-
